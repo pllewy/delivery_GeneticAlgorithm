@@ -1,0 +1,99 @@
+Projekt IO - gotowe funkcje
+Paweł Lewicki
+​
+Grzegorz Gapiński
+​
+total_cost = x
+
+
+funkcja_spalania(masa_ładunku):
+      spalanie_minimum = 10
+      współczynnik_spalania = 1
+      return spalanie_minimum + masa_ładunku * współczynnik_spalania
+
+
+MINI_EVALUATE(a, b, masa_ładunku, stan_baku):
+      spalanie = funkcja_spalania(masa_ładunku)
+
+      kara_za_brak_paliwa = 1000
+
+      koszt_kroku = 0
+      if krok % 2 == 0 then   # Jesteś na stacji
+            dystans = miasta[a]['x'] - stacje[b]['x'] + miasta[b]['y'] - stacje[a]['y']
+            stan_baku = stan_baku - dystans * spalanie
+            
+            if stan_baku < 0:
+                  koszt_kroku += kara_za_brak_paliwa
+            
+            koszt_kroku += cena_paliwa_na_tej_stacji * (pojemność baku - stan baku)
+            stan_baku = pojemność_baku
+      else                          # Jesteś w mieście
+            dystans = stacje[a]['x'] - miasta[b]['x'] + stacje[a]['y'] - miasta[b]['y']
+            stan_baku = stan_baku - dystans * spalanie
+            
+            if stan_baku < 0:
+                  koszt_kroku += kara_za_brak_paliwa
+            
+            masa_ładunku += DF[b]['masa']
+
+
+      return masa_ładunku, stan_baku, koszt_kroku
+
+
+EVALUATE_CASE(genotyp):
+      # Przykładowy genotyp: XA0B1C2D3EX
+      
+      total_cost = 0
+      stan_baku = 100
+      masa_ładunku = 0
+      
+      
+      for i in range(len(genotyp) - 1):
+            
+            masa_ładunku, stan_baku, koszt_kroku = MINI_EVALUATE(genotyp(i), genotyp(i+1))
+            total_cost += koszt_kroku
+            
+            
+      return total_cost
+      
+      
+      
+      
+SELEKCJA(populacja):
+
+      n = wielkość populacji
+      k = wielkość próby
+      
+      # SELEKCJA PRZEZ PRAWDOPODOBIEŃSTWO
+      max_cost = max(populacja[total_cost])
+      
+      for i in range n:
+            decision_probability = 1 - populacja[i][total_cost]/max_cost
+            random_binary(decision_probability)
+            
+            if 1 then:
+                  populacja_do_rozrodu.append(populacja(i))
+
+      
+      # SELEKCJA METODĄ TURNIEJOWĄ
+      
+      populacja_do_rozrodu = []
+
+      for i in range(n):
+            mini_populacja = random.sample(populacja, k)
+            populacja_do_rozrodu.append(max(mini_populacja, key = EVALUATE_CASE))
+            
+      return populacja_do_rozrodu
+      
+      
+CROSSING-OVER(populacja)
+            
+            
+MUTATE(populacja)
+            
+            
+            
+            
+            
+            
+      
