@@ -1,0 +1,71 @@
+IO – pomysł na projekt
+
+Komiwojażer z bajerami
+
+Założenia:
+
+- jedna ciężarówka
+
+- bak o określonej pojemności
+
+- z każdego miasta odbieramy określoną ilość towaru
+
+Dane dla miasta:
+
+- współrzędna x
+
+- współrzędna y
+
+- waga towaru do odbioru
+
+Dane dla stacji:
+
+- współrzędna x
+
+- współrzędna y
+
+- cena za litr paliwa
+
+Dane dla ciężarówki:
+
+- spalanie w zależności od załadowania (wprost proporcjonalne)
+
+- nieskończona ładowność
+
+Potencjalne opcje:
+
+- plecakowy – czyli odebrać jak najwięcej przesyłek, maksymalizując zysk (ładowność na plus, koszt benzyny na minus) – survival, akceptujemy tylko rozwiązania w których udało się wrócić do bazy
+
+- komiwojażer – odebrać cały towar – tylko minimalizacja kosztu (odległość zaszyta w koszcie benzyny), akceptujemy tylko opcje z powrotem do bazy
+
+1. Genotyp
+
+Baza: X – jest stacją benzynową
+
+Miasta: A,B,C…
+
+Stacje: 1,2,3… 0-brak odwiedzin na stacji
+
+XB0D0C1A0E2X – stacje parzyste (bo krok zerowy), miasta nieparzyste
+
+2. Ewaluacja
+
+Dla zadanego genotypu obliczamy jego koszt, monitorując przy tym stan baku.
+
+Uwzględniamy zmienne spalanie, zależne od masy przewożonego ładunku.
+
+Przechodzimy trasę krok po kroku. Dla każdego kroku wyznaczamy stan baku, aktualne (przyszłe) spalanie, a dla stacji benzynowych także koszt tankowania
+
+Możliwe strategie przy zejściu z benzyną poniżej 0:
+
+- odrzucenie rozwiązania, gdy benzyna <= 0
+
+- naprawienie – gdy benzyna spada do 0, cofnij się do poprzedniego kroku
+
+3. Selekcja
+
+4. Krzyżowanie
+
+5. Mutacja
+
+6. Zakończenie
