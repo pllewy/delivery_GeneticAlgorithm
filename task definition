@@ -1,30 +1,31 @@
+Task 5
+Solve the multi-criteria optimization problem faced by a courier company. We need to deliver parcels. On one hand, we want to deliver them as quickly as possible, and on the other, we want to minimize the cost. Input data:
 
-## Zad 5
-Rozwiąż zadanie optymalizacji wielokryterialnej stojące przed firmą kurierską. Mamy do dostarczenia przesyłki. Z jednej strony chcemy je dostarczyć jak najszybciej, z drugiej chcemy żeby to kosztowało jak najmniej. Dane wejściowe:
- - df -- zbiór zamówień z ich lokalizacją i wagą
- - t -- liczba dostępnych ciężarówek
- - p -- zbiór stacji benzynowych z lokalizacją i ceną za litr
- - fp -- funkcja określająca spalanie na 100km przy założonej wadze
- - cp -- pojemność baku
- - b -- lokalizacja bazy
- - s -- średnia prędkość w km/h
- - m -- godzinna stawka kierowcy
+df -- a dataset of orders with their locations and weights
+t -- number of available trucks
+p -- a dataset of fuel stations with their locations and price per liter
+fp -- a function defining fuel consumption per 100km based on the weight
+cp -- fuel tank capacity
+b -- base location
+s -- average speed in km/h
+m -- hourly rate of the driver
 
-Na koniec wszystkie ciężarówki muszą wrócić do bazy i mieć przynajmniej 50% paliwa w baku. Wszystkie paczki muszą być dostarczone w wymaganym okresie. Pojemność ciężarówek jest nieskończona. Do obliczania dystansu użyj metryki miejskiej, współrzędne są podane w kilometrach. Ciężarówka nie musi brać całego załadunku na raz, może wracać do bazy żeby zabrać kolejne paczki
+At the end, all trucks must return to the base and have at least 50% fuel left in the tank. All parcels must be delivered within the required period. The capacity of the trucks is unlimited. To calculate the distance, use the Manhattan distance, coordinates are given in kilometers. The truck does not need to take the entire load at once; it can return to the base to take more parcels.
+
+Example data:
 
 np.random.seed(42)
 n = 100
 t = 10
-df = pd.DataFrame({"latitude": np.random.randn(n)*50, 
-                  "longitude": np.random.randn(n)*50, 
-                  "mass": np.random.rand(n)*10})
+df = pd.DataFrame({"latitude": np.random.randn(n) * 50, 
+                   "longitude": np.random.randn(n) * 50, 
+                   "mass": np.random.rand(n) * 10})
 n = 10
-p = pd.DataFrame({"latitude": np.random.randn(n)*50, 
-                  "longitude": np.random.randn(n)*50, 
-                  "price": np.random.rand(n)*2+5})
+p = pd.DataFrame({"latitude": np.random.randn(n) * 50, 
+                  "longitude": np.random.randn(n) * 50, 
+                  "price": np.random.rand(n) * 2 + 5})
 fp = lambda m: m
 cp = 150
-b = np.array([0,0])
+b = np.array([0, 0])
 s = 40
 m = 50
-
