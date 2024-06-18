@@ -1,3 +1,5 @@
+# Genetic Algorithm for Truck Routing Problem
+
 Implementation of genetic algorithm for solving the truck routing problem. 
 
 The problem is defined as follows:
@@ -22,3 +24,5 @@ GENERAL STRATEGY:
 - repeat until convergence
 
 All the parameters of the problem are defined in the last cells of this notebook. 
+
+Licence: MIT, Paweł Lewicki, Grzegorz Gapiński, 2024
